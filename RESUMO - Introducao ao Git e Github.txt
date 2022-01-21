@@ -1,0 +1,199 @@
+INTRODUCAO AO GIT E GITHUB
+
+1) Entendendo o Git e a sua importância
+	a. Controle de versão
+	b. Armazenamento em nuvem
+	c. Trabalho em equipe
+	d. Melhorar o seu código
+	e. Reconhecimento
+
+2) Comandos básicos
+	- cd / dir / mkdir / del / rmdir / cls / echo <texto> / del <pasta> (deleta arquivos)
+	- cd / ls / mkdir / rm -rf <pasta> / clear (CTRL+L) / echo <texto> / 
+
+************************************
+GIT POR BAIXO DOS PANOS
+
+- SHA1: Secure Hash Algorithm
+	* Conjunto de funções hash criptográficas projetadas pela NSA (Agência de Segurança Nacional dos EUA)
+	* A encriptação gera conjunto de caracteres identificador de 40 dígitos (UNICO - IDENTIFICACAO)
+	* Uma forma curta de representar um arquivo
+
+git bash (git bash Here)
+openssl sha1 <arquivo>
+SHA1(<arquivo>)= dheh5fdg5d5v5dd554r5e5a5ea5g7y9uj36vb87s
+
+- OBJETOS FUNDAMENTAIS (BLOBS / TREES / COMMITS)
+
+BLOBS
+echo 'conteudo' | git hash-object --stdin (espera um arquivo, então precisa especificar que é uma string)
+> fc31e91b26cf85a55e072476de7f263c89260eb1
+(--stdin: a funcao espera um arquivo, então precisa especificar que é uma string)
+
+echo -e 'conteudo' | openssl sha1
+> 65b0d0dda479cc03cce59528e28961e498155f5c
+
+Objeto Git - Blob: contém metadados dentro dele (o git armazena metadados dentro dos objetos)
+
+SHA1 578dt...
+Tipo: Blob		<tamanho>
+\0
+Conteudo
+
+echo -e 'blob 9\0conteudo' | openssl sha1
+> fc31e91b26cf85a55e072476de7f263c89260eb1
+
+TREES: armazena blobs (também contém metadados) / responsável por montar toda a estrutura onde estão localizados os arquivos / pode apontar tanto para um blobs ("arquivos") quanto para outras árvores ("diretórios") - (sha1 do blob e o próprio sha1 da árvore)
+	* blob - bloco básico de composicao
+	* tree - armazenando e apontando para tipos de blobs diferentes
+	* commits
+
+SHA1 485de... (próprio sha1 da árvore)	
+Tipo: Tree		<tamanho>
+\0
+blob	sha1(arquivo)	<nome do arquivo>
+
+COMMIT: Objeto que vai juntar tudo, "dará sentido" à alteração que está sendo feita
+
+SHA1 487d4s...
+Tipo: Commit	<tamanho>
+tree	s4a5sq1
+parente	a98acq1 (último commit realizado antes dele)
+autor	perkles
+mensagem	"inicia ..." (descrição da alteração)
+timestamp (data e hora da criação)
+
+* Qualquer alteração em qualquer arquivo altera os sha1 de toda a estrutura (trees e commits)
+
+- SISTEMA DISTRIBUIDO SEGURO: mantém versionamento através dos SHA1
+
+********************************
+CHAVES SSH E TOKENS
+
+CHAVESSH: Estabelecer conexão segura e encriptada entre duas máquinas (chave pública / chave privada)
+	* Settings / SSH and GPG Keys / New SSH key
+
+1) CRIAR A CHAVE
+ ssh-keygen -t ed25519 -C <email>
+Generating public/private ed25519 key pair
+Enter file in which to save the key (<path>):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in <path>
+Your public key has been saved in <path> (file.pub)
+The key fingerprint is:
+<key fingerprint>
+The key's randomart image is:
+<key's randomart image>
+
+2) COPIAR NO GITHUB
+cd <path>/.ssh
+
+cat <file public key> (visualizar o conteúdo)
+<public key>
+copiar e colar no Github
+
+3) PASSAR PRO AGENT
+ eval $(ssh-agent -s) (Inicializa o ssh agent: entidade encarregada de pegar as chaves e lidar com elas)
+Agent pid 1382 (Inicializado o projeto pra rodar em plano de fundo)
+
+ ssh-add <private key> (entregar a chave pro agent - toda vez que chegar uma criptografia com essa chave, ele usará a chave privada para descriptografar a mensagem)
+Enter passphrase for <private key>:
+Identity added: <private key> (email)
+
+ git clone <ssh path> (não precisa ficar sempre autenticando com e-mail e senha)
+
+TOKEN DE ACESSO PESSOAL: Developer Settings / Personal Access Tokens / New personal access token
+	* Note / Expiration / repo (padrão) / Generate token (salvar em um arquivo o Token)
+
+copia o HTTPS para copiar
+git clone <https path>
+paste token
+
+*************************************
+INICIANDO O GIT E CRIANDO UM COMMIT
+
+- git init (incializar o repositorio git)
+- git add (mover arquivos e inciar o versionamento)
+- git commit (comissionamento)
+
+ls -a (mostra arquivos e pastas ocultos) - .git/
+
+Configuração inicial (primeira vez)
+ git config --global user.email <email>
+ git config --global user.name <name>
+
+Markdown (forma mais humana de escrever um arquivo html) - extensão .md
+# Titulo 1 - h1
+## Titulo 2 - h2
+...
+###### - Titulo 6 - h3
+
+ git add *
+ git commit -m <message>
+
+**************************************
+PASSO A PASSO NO CICLO DE VIDA DE UM ARQUIVO
+
+git init (cria o repositorio git)
+
+- Untracked: arquivos que o git não tem ciência deles
+
+- Tracked: arquivos que o git tem ciência deles
+	* Unmodified (ainda não foi modificado)
+	* Modified (arquivo que sofreu modificacao)
+	* Staged (arquivos que estão se preparando para fazer parte de outro tipo de agrupamento)
+
+=> git add <filename> / * / . (untracked -> staged) / (modified -> staged)
+
+=> modifica o arquivo -> muda a SHA1 dele (unmodified -> modified)
+	* ao usar git add: modified->staged
+
+=> após modificar um arquivo: git add (modified -> staged)
+
+=> staged: está se preparando para um "commit" (salva um snapshot (fotografia) do estado atual dos arquivos)
+	* staged -> unmodified
+
+REPOSITORIOS
+
+1) SERVIDOR (Remote Repository - Ex: Github)
+
+2) AMBIENTE DE DESENVOLVIMENTO
+	* Working Directory
+	* Staging Area (staged - git add)
+	* Local Repository (commit - git commit)
+
+git status (status dos arquivos e repositorios - staged / untracked / modified / unmodified)
+
+***************************************
+TRABALHANDO COM O GITHUB
+
+ git config --global --unset user.email
+ git config --global --unset user.name
+
+Your repositories / New repository - Name / Description / Public / README.md - CREATE
+
+ git remote add origin <link>
+ git remote -v (visualizar)
+ 
+ git push origin master (username)
+
+ SHA1 (históricos dos commits) / se tem parente
+
+****************************************
+RESOLVENDO CONFLITOS
+
+git pull origin master
+
+<<<<<<< HEAD
+	<Alteração local>
+===============
+	<Alteração no Github>
+>>>>>>>> ddff5v55es88q5c2v1g4r8e88r8e5a3s
+
+git add *
+git commit -m "<message>"
+git push origin master
+
+BAIXAR REPOSITORIO
+git clone <link>
