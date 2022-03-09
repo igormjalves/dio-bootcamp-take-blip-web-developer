@@ -1,0 +1,177 @@
+/* Declaracao de variáveis */
+:root {
+    --vermelho:#e50914;
+    --preto:#141414;
+}
+
+/* Formatação para todo o documento*/
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+/* Elementos da base da página*/
+
+body{
+    background: var(--preto); /* Uso das variaveis */
+    font-family: 'Arial', Times, serif;
+    color: white;
+}
+
+/* Declaracao de elementos html e classes*/
+header .container{
+    display: flex;
+    flex-direction: row; /*Configuracao padrão do flexbox*/
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .logo {
+    color: var(--vermelho);
+    font-family: 'Arial Black';
+    font-size: 40px;
+    margin-left: 5px;
+}
+
+header nav a{
+    text-decoration: none;
+    color: #AAA;
+    margin-right: 10px;
+}
+
+header nav a:hover{
+    color: #ffff;
+}
+
+/* Estilo do filme principal*/
+.filme-principal {
+    font-size: 16px;
+    background: linear-gradient(rgba(0, 0, 0, .50), rgba(0, 0, 0, .50)), url('/img/seriecapa.jpg');
+    
+    height: 400px;
+    background-size: cover;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.filme-principal .descricao {
+    margin-bottom: 70px;
+    margin-top: 10px;
+}
+
+.filme-principal .titulo {
+    font-size: 40px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-top: 10%; /*Posicionamento fluido - responsividade*/
+
+}
+
+/*Font awesome: permite criar icones dentro do html sem precisar ter as imagens*/
+/* Criacao de botoes com itens personalizados*/
+.filme-principal .botao {
+    background-color: rgba(0,0,0,.50);
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    margin-right: 15px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: .5s ease all;
+}
+
+.filme-principal .botao:hover {
+    background-color: white;
+    color: black;
+}
+
+/*Font awesome: permite criar icones dentro do html sem precisar ter as imagens*/
+/* Criacao de botoes com itens personalizados*/
+/*Vantagem: elimina a necessidade de salvar cada icone, já que o arquivo se encontra na nuvem*/
+.filme-principal .botao i{
+    margin-right:8px;
+}
+
+/* WRAPPER - Class container: Facilidade para manipular elementos filhos*/
+/* Envelopar um conteúdo com propriedades semelhantes*/
+.filme-principal .container{
+    width: 70%;
+    margin-left: 30px;
+}
+
+/* Configuracao dos estilos no Carrossel*/
+.box-filme {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.carrossel-filmes {
+    margin-top: 10px;
+}
+
+/* Opacidade quando mouse flutua sobre a imagem*/
+.item:hover .box-filme {
+    opacity: 0.3;
+}
+
+.item:hover .middle {
+    opacity:1;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+  
+/* Modal Content */
+.modal-content {
+    background-color: var(--preto);
+    margin: auto;
+    padding: 50px;
+    border: 1px solid #888;
+    width: 70%;
+}
+  
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    position: relative;
+    top: auto;
+    right: 16%;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+

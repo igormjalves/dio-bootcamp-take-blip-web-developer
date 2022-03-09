@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/main.css">
+    <!--Owl CSS-->
+    <link rel="stylesheet" href="/styles/owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="/styles/owl/owl.theme.default.min.css">
+    <!--Responsividade-->
+    <link rel="stylesheet" href="/styles/responsive.css">
+    <title>SPORTFLIX</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h2 class="logo">SPORTFLIX</h2>
+            <nav>
+                <a href="#">Inicio</a>
+                <a href="#">Séries</a>
+                <a href="#">Filmes</a>
+                <a href="#">Documentários</a>
+            </nav>
+        </div>
+    </header>
+    <!-- Caixa de Diálogo -->
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <!-- Conteúdo da Caixa de diálogo -->
+        <div class="modal-content">
+            <p id="texto-caixa">Some text in the Modal.. Some text in the Modal.Some text in the Modal.Some text in the Modal.Some text in the Modal.Some text in the Modal.Some text in the Modal.Some text in the Modal.Some text in the Modal.Some text in the Modal.Some text in the Modal.Some text in the Modal.Some text in the Modal.Some text in the Modal.</p>
+        </div>
+    </div>
+    <main>
+        <div class="filme-principal">
+            <!--div container - Classe wrapper: encaixar elementos dentro de uma estrutura-->
+            <div class="container">
+                <h3 class="titulo">STROKES OF GENIUS</h3>
+                <p class="descricao">Documentário sobre Roger Federer e Rafael Nadal no célebre campeonato de Wimbledon em 2008 - um jogo épico em que, no final, o verdadeiro vencedor foi o próprio desporto.</p>
+                <div class="botoes">
+                    <!-- role: o elemento botão pode não ser reconhecido em alguns casos -->
+                    <a href=https://www.youtube.com/watch?v=YSKzK4aKGoI">
+                        <button role="button" class="botao">
+                            <i class="fa-solid fa-play"></i>
+                            ASSISTIR AGORA
+                        </button>
+                    </a>
+                    <button role="button" class="botao" id="myBtn">
+                        <i class="fa-solid fa-info"></i>
+                        MAIS INFORMACOES
+                    </button>
+                </div> 
+            </div>
+        </div>
+        <div class="carrossel-filmes">
+            <div class="owl-carousel owl-theme">
+                <div class="item">
+                    <div class="middle">
+                        <i class="fa-solid fa-circle-play fa-2xl"></i>
+                    </div>
+                    <a href=https://www.youtube.com/watch?v=25CRk33DwMU">
+                        <img class="box-filme" src="/img/mini1.jpg" alt="">
+                    </a>
+                </div>
+                <div class="item">
+                    <div class="middle">
+                        <i class="fa-solid fa-circle-play fa-2xl"></i>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=bfiwfx6y6Wg">
+                        <img class="box-filme" src="/img/mini2.jpg" alt="">
+                    </a>
+                </div>
+                <div class="item">
+                    <div class="middle">
+                        <i class="fa-solid fa-circle-play fa-2xl"></i>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=ffq6c0vkSJI">
+                        <img class="box-filme" src="/img/mini3.jpg" alt="">
+                    </a>
+                </div>
+                <div class="item">
+                    <div class="middle">
+                        <i class="fa-solid fa-circle-play fa-2xl"></i>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=SH1n8banF6w">
+                        <img class="box-filme" src="/img/mini4.jpg" alt="">
+                    </a>
+                </div>
+                <div class="item">
+                    <div class="middle">
+                        <i class="fa-solid fa-circle-play fa-2xl"></i>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=illDZ9fKSGk">
+                        <img class="box-filme" src="/img/mini5.jpg" alt="">
+                    </a>
+                </div>
+                <div class="item">
+                    <div class="middle">
+                        <i class="fa-solid fa-circle-play fa-2xl"></i>
+                    </div>
+                    <img class="box-filme" src="/img/mini6.jpg" alt="">
+                </div>
+                <div class="item">
+                    <div class="middle">
+                        <i class="fa-solid fa-circle-play fa-2xl"></i>
+                    </div>
+                    <img class="box-filme" src="/img/mini7.jpg" alt="">
+                </div>
+                <div class="item">
+                    <div class="middle">
+                        <i class="fa-solid fa-circle-play fa-2xl"></i>
+                    </div>
+                    <img class="box-filme" src="/img/mini8.jpg" alt="">
+                </div>
+                <div class="item">
+                    <div class="middle">
+                        <i class="fa-solid fa-circle-play fa-2xl"></i>
+                    </div>
+                    <img class="box-filme" src="/img/mini9.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://kit.fontawesome.com/1c50e5b425.js" crossorigin="anonymous"></script>
+    <script src="js/owl/jquery.min.js"></script>
+    <script src="js/owl/owl.carousel.min.js"></script>
+    <script src="js/owl/setup.js"></script>
+    <footer></footer>
+</body>
+</html>
