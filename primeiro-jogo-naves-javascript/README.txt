@@ -1,0 +1,1 @@
+Jogo de naves feito em HTML, CSS e Javascript. Utilização do Framework JQuery.
